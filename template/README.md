@@ -95,3 +95,18 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+MyTemplate
+├── src
+│ ├── assets # Images, Fonts
+│ ├── components # Shared UI (Button, Input, Card)
+│ ├── config # Env variables, constants
+│ ├── navigation # Navigation container & Stacks
+│ ├── services # API Client, MMKV instance
+│ ├── theme # Colors, Spacing, Typography
+│ ├── utils # Helper functions (dates, validation)
+│ └── features # <--- THE IMPORTANT PART
+│ ├── auth # Login, Signup, Forgot Password
+│ └── home # Dashboard, Feed
+├── App.tsx # Entry point
+└── template.config.js # The magic file for CLI
