@@ -110,3 +110,36 @@ MyTemplate
 │ └── home # Dashboard, Feed
 ├── App.tsx # Entry point
 └── template.config.js # The magic file for CLI
+
+MyTemplate/
+├── .husky/ # Git hooks (pre-commit linting)
+├── **tests**/ # Integration/E2E tests
+├── android/
+├── ios/
+├── src/
+│ ├── assets/ # Static assets
+│ │ ├── fonts/
+│ │ ├── images/
+│ │ └── svgs/ # Svg component exports
+│ ├── components/ # Shared/Global UI components (Atoms/Molecules)
+│ │ ├── Button/
+│ │ ├── ScreenWrapper/ # Safe area + StatusBar handling
+│ │ └── Typography/
+│ ├── config/ # Environment variables, constants
+│ ├── hooks/ # Global custom hooks (useDebounce, useAppState)
+│ ├── navigation/ # Navigation stacks (AuthStack, AppStack, Linking)
+│ ├── screens/ # The Views (Pages)
+│ │ ├── Auth/
+│ │ └── Home/
+│ ├── services/ # External Side Effects
+│ │ ├── api/ # Axios instance & endpoints
+│ │ ├── storage/ # MMKV wrapper
+│ │ └── i18n/ # Localization (if needed)
+│ ├── store/ # Global State (Zustand/Redux)
+│ ├── theme/ # Design tokens (Colors, Spacing, Typography)
+│ ├── types/ # Global TypeScript definitions
+│ └── utils/ # Pure helper functions (date formatting, validation)
+├── App.tsx # Clean entry point
+├── babel.config.js
+├── package.json
+└── tsconfig.json
