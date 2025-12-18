@@ -1,10 +1,11 @@
+import { Config } from '@/config/env';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 const HomeScreen = () => {
   return (
     <View>
-      <Text>HomeScreen</Text>
+      <Text>HomeScreen {JSON.stringify(Config)}</Text>
     </View>
   );
 };

@@ -72,6 +72,8 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -79,11 +81,16 @@ android {
 
     namespace "com.mytemplate"
     defaultConfig {
-        applicationId "com.mytemplate"
+        applicationId project.env.get("BUNDLE_ID")
+        versionCode project.env.get("BUILD_NUMBER").toInteger()
+        versionName project.env.get("APP_VERSION")
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+
+        // This makes APP_NAME available in AndroidManifest.xml as ${APP_NAME}
+        manifestPlaceholders = [
+            APP_NAME: project.env.get("APP_NAME")
+        ]
     }
     signingConfigs {
         debug {

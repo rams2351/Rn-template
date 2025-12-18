@@ -3,14 +3,18 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "android:dev": "ENVFILE=.env npx react-native run-android",
+    "android:prod": "ENVFILE=.env.production npx react-native run-android",
+    "ios:dev": "ENVFILE=.env npx react-native run-ios",
+    "ios:prod": "ENVFILE=.env.production npx react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
+    "start:reset":"npx react-native start --reset-cache",
     "test": "jest",
     "pods": "cd ios && bundle exec pod install",
-    "clean-pods": "cd ios && rm -rf Pods Podfile.lock && cd ..",
-    "start-reset": "npx react-native start --reset-cache"
+    "pods:clean": "cd ios && rm -rf Pods Podfile.lock && cd ..",
+    "gradlew:clean":"cd android && ./gradlew clean && cd ..",
+    "clean": "watchman watch-del-all && rm -rf node_modules && yarn install && cd ios && rm -rf Pods Podfile.lock && pod install && cd .."
   },
   "dependencies": {
     "@react-native/new-app-screen": "0.83.0",
@@ -19,6 +23,7 @@
     "axios": "^1.13.2",
     "react": "19.2.0",
     "react-native": "0.83.0",
+    "react-native-config": "^1.6.1",
     "react-native-mmkv": "^4.1.0",
     "react-native-nitro-modules": "^0.31.10",
     "react-native-safe-area-context": "^5.6.2",

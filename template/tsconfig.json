@@ -17,7 +17,8 @@
     
     /* Path Mapping */
     "baseUrl": ".",
-  "paths": {
+    "paths": {
+      "@/*": ["src/*"],
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@config/*": ["src/config/*"],
@@ -28,9 +29,7 @@
       "@theme/*": ["src/theme/*"],
       "@utils/*": ["src/utils/*"],
       "@types/*": ["src/types/*"],
-      "@vendor/*": ["src/vendor/*"],
-      "@/*": ["src/*"],
-
+      "@vendor/*": ["src/vendor/*"]
     },
     "types": ["jest", "node"]
   },
