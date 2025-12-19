@@ -31,11 +31,11 @@ const TabNavigator = () => {
           fontSize: 18,
           color: colors.foreground, // Dynamic Text Color
         },
-        tabBarActiveTintColor: colors.primary, // Dynamic Brand Color
-        tabBarInactiveTintColor: colors.mutedForeground, // Dynamic Grey
+        tabBarActiveTintColor: colors.foreground, // Dynamic Brand Color
+        tabBarInactiveTintColor: colors.border, // Dynamic Grey
         tabBarStyle: {
           borderTopColor: colors.border,
-          backgroundColor: colors.background, // Dynamic Background
+          backgroundColor: colors.primary, // Dynamic Background
           elevation: 0, // Removes Android Shadow for cleaner look
         },
       }}
