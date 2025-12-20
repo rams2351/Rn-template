@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "ENVFILE=.env npx react-native run-android",
-    "android:prod": "ENVFILE=.env.production npx react-native run-android",
+   "android": "ENVFILE=.env npx react-native run-android --appId com.mytemplate.ram.dev",
+   "android:prod": "ENVFILE=.env.production npx react-native run-android --appId com.mytemplate.ram.dev",
     "ios": "ENVFILE=.env npx react-native run-ios",
     "ios:prod": "ENVFILE=.env.production npx react-native run-ios",
     "lint": "eslint .",
@@ -14,7 +14,8 @@
     "pods": "cd ios && bundle exec pod install",
     "pods:clean": "cd ios && rm -rf Pods Podfile.lock && cd ..",
     "gradlew:clean": "cd android && ./gradlew clean && cd ..",
-    "clean": "watchman watch-del-all && rm -rf node_modules && yarn install && cd ios && rm -rf Pods Podfile.lock && pod install && cd .."
+    "clean": "watchman watch-del-all && rm -rf node_modules && yarn install && cd ios && rm -rf Pods Podfile.lock && pod install && cd ..",
+    "android:deep-clean":"rm -rf android/app/.cxx  android/app/build  android/.gradle"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

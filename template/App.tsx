@@ -23,7 +23,7 @@ const AppRenderer: React.FC = () => {
       <StatusBar
         barStyle={isDark ? 'light-content' : 'dark-content'}
         backgroundColor="transparent"
-        translucent={false}
+        translucent={true}
       />
       <GestureHandlerRootView>
         <KeyboardProvider>

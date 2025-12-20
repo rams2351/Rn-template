@@ -7,6 +7,7 @@ import {
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+
 // Screens
 import HomeScreen from '@/screens/Home';
 import KeyboardAnimation from '@/screens/Keyboard';
@@ -14,30 +15,38 @@ import KeyboardAnimation from '@/screens/Keyboard';
 // Theme
 import { StandardFonts } from '@/theme/Fonts';
 import { useTheme } from '@/theme/ThemeProvider';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
-  // 1. Hook into the theme to get current colors
   const { colors } = useTheme();
 
   return (
     <Tab.Navigator
       screenOptions={{
+        headerShown: false,
         headerTitleAlign: 'center',
         headerTitleStyle: {
           fontFamily: StandardFonts['700'],
           fontSize: 18,
-          color: colors.foreground, // Dynamic Text Color
+          color: colors.foreground,
         },
-        tabBarActiveTintColor: colors.foreground, // Dynamic Brand Color
-        tabBarInactiveTintColor: colors.border, // Dynamic Grey
+        tabBarActiveTintColor: colors.border,
+        tabBarInactiveTintColor: colors.foreground,
         tabBarStyle: {
           borderTopColor: colors.border,
-          backgroundColor: colors.primary, // Dynamic Background
-          elevation: 0, // Removes Android Shadow for cleaner look
+          backgroundColor: colors.primary,
+          elevation: 0,
+          // height: Platform.select({ android: 60, ios: 80 }),
         },
+        tabBarIcon: ({ focused }) => (
+          <Icon
+            name="home"
+            color={focused ? colors.border : colors.foreground}
+          />
+        ),
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
@@ -51,22 +60,10 @@ export const AppNavigator = () => {
   const BaseTheme = isDark ? DarkTheme : DefaultTheme;
 
   const fontConfig = {
-    regular: {
-      fontFamily: StandardFonts['400'], // Fixed index to string '400'
-      fontWeight: '400' as const,
-    },
-    medium: {
-      fontFamily: StandardFonts['500'],
-      fontWeight: '500' as const,
-    },
-    bold: {
-      fontFamily: StandardFonts['700'],
-      fontWeight: '700' as const,
-    },
-    heavy: {
-      fontFamily: StandardFonts['800'],
-      fontWeight: '800' as const,
-    },
+    regular: { fontFamily: StandardFonts['400'], fontWeight: '400' as const },
+    medium: { fontFamily: StandardFonts['500'], fontWeight: '500' as const },
+    bold: { fontFamily: StandardFonts['700'], fontWeight: '700' as const },
+    heavy: { fontFamily: StandardFonts['800'], fontWeight: '800' as const },
   };
 
   const navigationTheme: Theme = {

@@ -4,6 +4,7 @@ import { scaler, showInfoMsg } from '@/utils/helpers';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -11,11 +12,9 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const { toggleTheme, colors } = useTheme();
 
-  // 1. Separate Functions for clarity
   const showSuccess = () => {
     Toast.show({
       type: 'success',
-      // text1: 'Order Placed',
       text2: 'Your order #12345 has been successfully placed.',
     });
   };
@@ -23,78 +22,72 @@ const HomeScreen = () => {
   const showError = () => {
     Toast.show({
       type: 'error',
-      // text1: 'Connection Failed',
       text2: 'Could not connect to the server. Please try again.',
     });
   };
 
   const showInfo = () => {
     showInfoMsg('A new version of the app is ready for download.');
-    return;
-    Toast.show({
-      type: 'info',
-      text1: 'Update Available',
-      text2: 'A new version of the app is ready for download.',
-    });
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {/* Header Area */}
-      <MyComponent />
+    // 🚀 FIX: Auto-handle Top/Left/Right. Ignore Bottom (Tabs handle it).
+    <SafeAreaView edges={['top', 'left', 'right']} style={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={styles.container}>
+        {/* Header Area */}
+        <MyComponent />
 
-      <View style={styles.spacer} />
+        <View style={styles.spacer} />
 
-      {/* 2. Toast Trigger Buttons */}
-      <Text style={styles.sectionTitle}>Test Toasts</Text>
+        {/* Buttons */}
+        <Text style={styles.sectionTitle}>Test Toasts</Text>
 
-      <TouchableOpacity
-        style={[styles.button, { backgroundColor: '#2E7D32' }]}
-        onPress={showSuccess}
-      >
-        <Icon name="check" size={16} color="white" style={styles.btnIcon} />
-        <Text style={styles.btnText}>Show Success Banner</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: '#2E7D32' }]}
+          onPress={showSuccess}
+        >
+          <Icon name="check" size={16} color="white" style={styles.btnIcon} />
+          <Text style={styles.btnText}>Show Success Banner</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={[styles.button, { backgroundColor: '#D32F2F' }]}
-        onPress={showError}
-      >
-        <Icon name="warning" size={16} color="white" style={styles.btnIcon} />
-        <Text style={styles.btnText}>Show Error Banner</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: '#D32F2F' }]}
+          onPress={showError}
+        >
+          <Icon name="warning" size={16} color="white" style={styles.btnIcon} />
+          <Text style={styles.btnText}>Show Error Banner</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={[styles.button, { backgroundColor: '#0288D1' }]}
-        onPress={showInfo}
-      >
-        <Icon name="info" size={16} color="white" style={styles.btnIcon} />
-        <Text style={styles.btnText}>Show Info Banner</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: '#0288D1' }]}
+          onPress={showInfo}
+        >
+          <Icon name="info" size={16} color="white" style={styles.btnIcon} />
+          <Text style={styles.btnText}>Show Info Banner</Text>
+        </TouchableOpacity>
 
-      <View style={styles.spacer} />
+        <View style={styles.spacer} />
 
-      {/* Navigation Test */}
-      <TouchableOpacity
-        style={styles.iconButton}
-        onPress={() => navigation.navigate('KeyboardAnimation' as never)}
-      >
-        <Icon name="keyboard-o" size={40} color={colors.primary} />
-        <Text style={{ marginTop: 5 }}>Go to Keyboard</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.iconButton}
+          onPress={() => navigation.navigate('KeyboardAnimation' as never)}
+        >
+          <Icon name="keyboard-o" size={40} color={colors.primary} />
+          <Text style={{ marginTop: 5 }}>Go to Keyboard</Text>
+        </TouchableOpacity>
 
-      <View style={styles.spacer} />
+        <View style={styles.spacer} />
 
-      {/* Theme Toggle */}
-      <TouchableOpacity
-        style={[styles.button, { backgroundColor: colors.foreground }]}
-        onPress={toggleTheme}
-      >
-        <Text style={[styles.btnText, { color: colors.background }]}>
-          Toggle Theme
-        </Text>
-      </TouchableOpacity>
-    </ScrollView>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: colors.foreground }]}
+          onPress={toggleTheme}
+        >
+          <Text style={[styles.btnText, { color: colors.background }]}>
+            Toggle Theme
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -108,7 +101,10 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     alignItems: 'center',
-    paddingTop: 60,
+    // 🚀 FIX: Removed 'paddingTop: 60'.
+    // SafeAreaView now adds the exact Notch height automatically.
+    // We just add a small 20px buffer for aesthetics.
+    paddingTop: 20,
   },
   spacer: {
     height: 30,
@@ -123,7 +119,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
   },
-  // Button Styles
   button: {
     flexDirection: 'row',
     alignItems: 'center',

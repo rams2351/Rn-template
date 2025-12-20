@@ -3,7 +3,7 @@ import { Colors } from '@/theme/Colors';
 import { StandardFonts } from '@/theme/Fonts';
 import { scaler } from '@/utils/helpers';
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ToastConfig } from 'react-native-toast-message';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -62,8 +62,14 @@ const styles = StyleSheet.create({
     // 1. Safety Buffer
     // It is often safer to keep vertical status-bar buffers unscaled or fixed,
     // but scaler() is acceptable if your testing shows it works.
-    paddingTop: scaler(120),
-    marginTop: scaler(-60),
+    paddingTop: Platform.select({
+      ios: scaler(120), // Keep huge buffer for iOS bounce
+      android: scaler(60), // Standard padding for Android
+    }),
+    marginTop: Platform.select({
+      ios: scaler(-60), // Pull up only on iOS
+      android: scaler(-5), // No negative margin needed on Android
+    }),
 
     width: '100%',
     paddingBottom: scaler(20),
