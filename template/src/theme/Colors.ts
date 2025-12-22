@@ -28,7 +28,7 @@ const palette = {
   amberWarning: 'rgba(245, 158, 11, 1)', // --warning
   blueInfo: 'rgba(59, 130, 246, 1)', // --info
   redDestructive: 'rgba(239, 68, 68, 1)', // --destructive (Light)
-  redDestructiveDark: 'rgba(127, 29, 29, 1)', // --destructive (Dark)
+  redDestructiveDark: 'rgba(235, 54, 54, 1)', // --destructive (Dark)
 };
 
 /**

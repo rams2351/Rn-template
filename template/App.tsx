@@ -26,15 +26,15 @@ const AppRenderer: React.FC = () => {
         translucent={true}
       />
       <GestureHandlerRootView>
-        <KeyboardProvider>
+        <KeyboardProvider statusBarTranslucent={true} navigationBarTranslucent>
           <AppNavigator />
-          <Toast
-            config={toastConfig}
-            position="top"
-            topOffset={0} // Adjust this based on your StatusBar height
-          />
         </KeyboardProvider>
       </GestureHandlerRootView>
+      <Toast
+        config={toastConfig}
+        position="top"
+        topOffset={0} // Adjust this based on your StatusBar height
+      />
     </SafeAreaProvider>
   );
 };

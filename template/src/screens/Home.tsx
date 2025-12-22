@@ -1,3 +1,5 @@
+import { Button } from '@/components/Button';
+import { TextInput } from '@/components/TexpInput';
 import { Text } from '@/components/Text';
 import { useTheme } from '@/theme/ThemeProvider';
 import { scaler, showInfoMsg } from '@/utils/helpers';
@@ -39,6 +41,9 @@ const HomeScreen = () => {
 
         <View style={styles.spacer} />
 
+        <TextInput label="hello" />
+        <TextInput label="hello" error="this is error" />
+
         {/* Buttons */}
         <Text style={styles.sectionTitle}>Test Toasts</Text>
 
@@ -70,13 +75,26 @@ const HomeScreen = () => {
 
         <TouchableOpacity
           style={styles.iconButton}
-          onPress={() => navigation.navigate('KeyboardAnimation' as never)}
+          onPress={() => navigation.navigate('TestComponentsScreen' as never)}
         >
           <Icon name="keyboard-o" size={40} color={colors.primary} />
           <Text style={{ marginTop: 5 }}>Go to Keyboard</Text>
         </TouchableOpacity>
 
         <View style={styles.spacer} />
+
+        <Button
+          title="Toggle Theme"
+          // style={{ width: '100%' }}
+          fullWidth
+          onPress={toggleTheme}
+          loading
+          loadingTitle="Toggling"
+        ></Button>
+
+        <Button fullWidth title="Secondary" variant="secondary" />
+        <Button fullWidth title="Outline" variant="outline" />
+        <Button fullWidth title="Ghost" variant="ghost" />
 
         <TouchableOpacity
           style={[styles.button, { backgroundColor: colors.foreground }]}

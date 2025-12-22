@@ -10,7 +10,7 @@ import React from 'react';
 
 // Screens
 import HomeScreen from '@/screens/Home';
-import KeyboardAnimation from '@/screens/Keyboard';
+import { TestComponentsScreen } from '@/screens/Keyboard';
 
 // Theme
 import { StandardFonts } from '@/theme/Fonts';
@@ -50,7 +50,10 @@ const TabNavigator = () => {
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Profile" component={KeyboardAnimation} />
+      <Tab.Screen
+        name="TestComponentsScreen"
+        component={TestComponentsScreen}
+      />
     </Tab.Navigator>
   );
 };

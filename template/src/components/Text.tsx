@@ -33,54 +33,56 @@ interface TextProps extends Omit<RNTextProps, 'style'> {
 }
 
 export const Text: FC<TextProps> = props => {
-  const { style, animatedProps, animated, condensed, ...rest } = props;
+  const {
+    style,
+    animatedProps,
+    animated,
+    allowFontScaling = false,
+    condensed,
+    ...rest
+  } = props;
   const { colors } = useTheme();
 
   const styles = useMemo(() => {
     const flatStyle = StyleSheet.flatten(style ?? {}) as any;
 
-    const weight = flatStyle.fontWeight
-      ? flatStyle.fontWeight.toString()
-      : '400';
+    let rawWeight = flatStyle.fontWeight?.toString() || '400';
+    if (rawWeight === 'bold') rawWeight = '700';
+    if (rawWeight === 'normal') rawWeight = '400';
 
     // 1. Select the correct Map (Standard vs Condensed)
     const FontMap = condensed ? CondensedFonts : StandardFonts;
 
-    let fontFamily = flatStyle?.fontFamily
+    const fontFamily = flatStyle?.fontFamily
       ? flatStyle?.fontFamily
-      : (FontMap as any)[weight] || FontMap['400'];
+      : (FontMap as any)[rawWeight] || FontMap['400'];
 
-    return StyleSheet.create({
-      textStyle: {
-        color: colors.foreground,
-        fontSize: scaler(15),
-        ...flatStyle,
-        fontFamily,
-        fontWeight: undefined,
-        includeFontPadding: false,
-        textAlignVertical: 'center',
-      } as TextStyle,
-    });
+    return {
+      color: colors.foreground,
+      fontSize: scaler(15),
+      ...flatStyle,
+      fontFamily,
+      fontWeight: undefined,
+      includeFontPadding: false,
+      textAlignVertical: 'center',
+    } as TextStyle;
   }, [style, condensed, colors]);
+
+  const commonProps = {
+    ...rest,
+    allowFontScaling,
+    suppressHighlighting: true,
+  };
 
   if (animated) {
     return (
       <Animated.Text
-        {...rest}
-        style={styles.textStyle}
+        {...commonProps}
+        style={styles}
         animatedProps={animatedProps}
-        allowFontScaling={false}
-        suppressHighlighting={true}
       />
     );
   }
 
-  return (
-    <RNText
-      {...rest}
-      style={styles.textStyle}
-      allowFontScaling={false}
-      suppressHighlighting={true}
-    />
-  );
+  return <RNText {...commonProps} style={styles} />;
 };
