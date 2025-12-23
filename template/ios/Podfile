@@ -23,12 +23,22 @@ target 'MyTemplate' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  post_install do |installer|
-    react_native_post_install(
-      installer,
-      config[:reactNativePath],
-      :mac_catalyst_enabled => false,
-      # :ccache_enabled => true
-    )
+ post_install do |installer|
+  # React Native standard setup
+  react_native_post_install(
+    installer,
+    config[:reactNativePath],
+    :mac_catalyst_enabled => false
+  )
+
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      # ⬇️ FIX 1: This fixes the "non-modular-include" error for Nitro/MMKV
+      config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+      
+      # ⬇️ FIX 2: Ensure C++17 support is enabled (often needed for Nitro)
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', '_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION']
+    end
   end
+end
 end

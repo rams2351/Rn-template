@@ -1,11 +1,19 @@
 package com.mytemplate
 
+import android.os.Bundle
+import com.zoontek.rnbootsplash.RNBootSplash
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
 import com.facebook.react.defaults.DefaultReactActivityDelegate
 
 class MainActivity : ReactActivity() {
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    // UPDATED: Cleaned up syntax and ensured init is called before super.onCreate
+    RNBootSplash.init(this, R.style.BootTheme) 
+    super.onCreate(savedInstanceState)
+  }
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule

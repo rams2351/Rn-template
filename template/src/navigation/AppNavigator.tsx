@@ -7,6 +7,7 @@ import {
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+import BootSplash from 'react-native-bootsplash';
 
 // Screens
 import HomeScreen from '@/screens/Home';
@@ -84,7 +85,15 @@ export const AppNavigator = () => {
   };
 
   return (
-    <NavigationContainer theme={navigationTheme}>
+    <NavigationContainer
+      theme={navigationTheme}
+      onReady={() => {
+        // 🚀 EFFICIENCY TIP:
+        // Hide the splash screen ONLY when navigation is fully mounted.
+        // The "fade: true" creates a smooth, professional native feel.
+        BootSplash.hide({ fade: true });
+      }}
+    >
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
