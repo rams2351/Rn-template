@@ -2,7 +2,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { scaler } from '@/utils/helpers';
 import React, { FC, useEffect, useRef } from 'react';
 import { Animated, Pressable, StyleSheet, View, ViewStyle } from 'react-native';
-import { Text } from './Text';
+import { Text } from '../Text';
 
 export interface SwitchProps {
   value: boolean;

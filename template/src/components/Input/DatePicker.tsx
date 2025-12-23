@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import RNDatePicker from 'react-native-date-picker';
 import Icon from 'react-native-vector-icons/Feather';
-import { Text } from './Text';
+import { Text } from '../Text';
 
 export interface DatePickerProps {
   // Data

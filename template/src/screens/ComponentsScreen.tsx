@@ -9,23 +9,22 @@ import { z } from 'zod';
 // --- COMPONENTS ---
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card'; // ✅ NEW
-import { Checkbox } from '@/components/Checkbox'; // ✅ NEW
-import { DatePicker } from '@/components/DatePicker';
+import { Checkbox } from '@/components/Checkbox/Checkbox'; // ✅ NEW
+import { DatePicker } from '@/components/Input/DatePicker';
 import { Menu } from '@/components/Menu';
 import { Modal } from '@/components/Modal';
-import { Select } from '@/components/Select';
-import { Switch } from '@/components/Switch'; // ✅ NEW
-import { TextInput } from '@/components/TexpInput';
+import { Select } from '@/components/Select/Select';
+import { Switch } from '@/components/Switch/Switch'; // ✅ NEW
 import { Text } from '@/components/Text';
 
 // --- FORM MOLECULES ---
-import { FormCheckbox } from '@/components/FormCheckbox'; // ✅ NEW
-import { FormDatePicker } from '@/components/FormDatePicker';
-import { FormInput } from '@/components/FormInput';
-import { FormSelect } from '@/components/FormSelect';
-import { FormSwitch } from '@/components/FormSwitch'; // ✅ NEW
+import { FormCheckbox } from '@/components/Checkbox/FormCheckbox'; // ✅ NEW
+import { FormDatePicker } from '@/components/Input/FormDatePicker';
+import { FormSelect } from '@/components/Select/FormSelect';
+import { FormSwitch } from '@/components/Switch/FormSwitch'; // ✅ NEW
 
 // --- THEME & UTILS ---
+import { FormTextInput, TextInput } from '@/components/Input';
 import { Row } from '@/components/Row';
 import { useTheme } from '@/theme/ThemeProvider';
 import { scaler, showSuccessMsg } from '@/utils/helpers';
@@ -139,14 +138,14 @@ const FormsTab = () => {
         </Text>
 
         <Card>
-          <FormInput
+          <FormTextInput
             control={control}
             name="email"
             label="Email"
             placeholder="user@example.com"
             autoCapitalize="none"
           />
-          <FormInput
+          <FormTextInput
             control={control}
             name="password"
             label="Password"

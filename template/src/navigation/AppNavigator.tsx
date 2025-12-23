@@ -10,8 +10,8 @@ import React from 'react';
 import BootSplash from 'react-native-bootsplash';
 
 // Screens
+import { TestComponentsScreen } from '@/screens/ComponentsScreen';
 import HomeScreen from '@/screens/Home';
-import { TestComponentsScreen } from '@/screens/Keyboard';
 
 // Theme
 import { StandardFonts } from '@/theme/Fonts';

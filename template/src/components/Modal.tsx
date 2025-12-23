@@ -55,8 +55,14 @@ export const Modal: FC<ModalProps> = ({
         borderTopRightRadius: scaler(20),
         paddingBottom: insets.bottom + scaler(20),
         minHeight: scaler(200),
+        borderTopWidth: scaler(1),
+        borderColor: colors.border,
       }
-    : { borderRadius: scaler(16) };
+    : {
+        borderRadius: scaler(16),
+        borderWidth: scaler(1),
+        borderColor: colors.border,
+      };
 
   const handleClose = () => {
     Keyboard.dismiss();

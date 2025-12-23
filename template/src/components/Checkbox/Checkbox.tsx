@@ -10,7 +10,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import { Text } from './Text';
+import { Text } from '../Text';
 
 export interface CheckboxProps {
   value: boolean;

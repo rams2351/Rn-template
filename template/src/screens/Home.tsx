@@ -1,5 +1,5 @@
 import { Button } from '@/components/Button';
-import { TextInput } from '@/components/TexpInput';
+import { TextInput } from '@/components/Input/TextInput';
 import { Text } from '@/components/Text';
 import { useTheme } from '@/theme/ThemeProvider';
 import { scaler, showInfoMsg } from '@/utils/helpers';

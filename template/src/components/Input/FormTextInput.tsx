@@ -1,4 +1,4 @@
-import { InputProps, TextInput } from '@/components/TexpInput';
+import { InputProps, TextInput } from '@/components/Input/TextInput';
 import React, { FC } from 'react';
 import { Control, Controller, RegisterOptions } from 'react-hook-form';
 
@@ -8,7 +8,7 @@ interface FormInputProps extends InputProps {
   rules?: RegisterOptions;
 }
 
-export const FormInput: FC<FormInputProps> = ({
+export const FormTextInput: FC<FormInputProps> = ({
   control,
   name,
   rules,

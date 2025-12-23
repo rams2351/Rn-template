@@ -4,7 +4,7 @@ import React, { FC, useState } from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import Icon from 'react-native-vector-icons/Feather';
-import { Text } from './Text';
+import { Text } from '../Text';
 
 export interface SelectItem {
   label: string;
